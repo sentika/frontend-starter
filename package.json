@@ -1,0 +1,33 @@
+{
+  "name": "webpack-sample",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npx webpack",
+    "start": "npx webpack-dev-server",
+    "test": "npx karma start",
+    "test:watch": "npm run test -- --auto-watch --no-single-run"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jasmine": "3.5.0",
+    "awesome-typescript-loader": "5.2.1",
+    "css-loader": "3.2.0",
+    "html-webpack-plugin": "3.2.0",
+    "jasmine-core": "3.5.0",
+    "karma": "4.4.1",
+    "karma-chrome-launcher": "3.1.0",
+    "karma-jasmine": "2.0.1",
+    "karma-mocha-reporter": "2.2.5",
+    "karma-webpack": "4.0.2",
+    "node-sass": "4.13.0",
+    "sass-loader": "8.0.0",
+    "style-loader": "1.0.1",
+    "typescript": "3.7.2",
+    "webpack": "4.41.2",
+    "webpack-cli": "3.3.10",
+    "webpack-dev-server": "3.9.0"
+  },
+  "dependencies": {
+    "normalize.css": "8.0.1"
+  }
+}

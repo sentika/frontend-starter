@@ -1,0 +1,31 @@
+.btn {
+  text-decoration: none;
+  display: inline-flex;
+  padding: 8px 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  &.btn-primary {
+    @include font-semibold;
+    text-transform: uppercase;
+    background: $btn-primary-bg-color;
+    color: $btn-primary-color;
+    border-color: $btn-primary-border-color;
+    @include transition(background-color);
+
+    @include no-touch {
+      &:hover {
+        background: $btn-primary-bg-active-color;
+        color: $btn-primary-active-color;
+        border: 1px solid $btn-primary-border-active-color;
+      }
+    }
+  }
+
+  &:disabled {
+    cursor: default;
+    background: $btn-disabled-bg-color !important;
+    color: $btn-disabled-color !important;
+    border-color: $btn-disabled-border-color !important;
+  }
+}
