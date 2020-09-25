@@ -1,4 +1,4 @@
-const testWebpackConfig = require('./webpack.config.js')({env: 'test'});
+const testWebpackConfig = require('./webpack.dev.js')({env: 'test'});
 
 module.exports = function (config) {
     config.set({

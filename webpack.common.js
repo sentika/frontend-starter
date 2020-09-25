@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // We need this plugin to detect a `--watch` mode. It may be removed later
 // after https://github.com/webpack/webpack/issues/3460 will be resolved.
 const {CheckerPlugin, TsConfigPathsPlugin} = require('awesome-typescript-loader');
+const helpers = require('./helpers');
 
 module.exports = function () {
     return {
@@ -28,28 +29,24 @@ module.exports = function () {
         module: {
             rules: [
                 {
+                    enforce: 'pre',
+                    test: /\.scss$/,
+                    loader: 'import-glob-loader',
+                    exclude: [
+                        /node_modules/
+                    ]
+                },
+
+                {
                     test: /\.tsx?$/,
                     loader: 'awesome-typescript-loader'
                 },
 
                 {
-                    test: /\.s[ac]ss$/i,
-                    use: [
-                        'style-loader',
-                        {
-                            loader: 'css-loader',
-                            options: {
-                                sourceMap: true,
-                            },
-                        },
-                        {
-                            loader: 'sass-loader',
-                            options: {
-                                sourceMap: true,
-                            },
-                        },
-                    ],
-                },
+                    test: /\.scss$/,
+                    use: ['style-loader', 'css-loader', 'sass-loader'],
+                    include: [helpers.root('src', 'styles')]
+                }
             ]
         },
 
@@ -60,11 +57,6 @@ module.exports = function () {
                 template: './src/index.html'
             })
         ],
-
-        devServer: {
-            open: true,
-            port: 7375
-        },
 
         performance: {
             hints: false
