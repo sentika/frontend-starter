@@ -1,6 +1,7 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 // `CheckerPlugin` is optional. Use it if you want async error reporting.
 // We need this plugin to detect a `--watch` mode. It may be removed later
@@ -43,8 +44,24 @@ module.exports = function () {
                 },
 
                 {
+                    test: /\.(jpg|png|gif)$/,
+                    use: `file-loader?name=images/[name].[ext]`
+                },
+
+                {
                     test: /\.scss$/,
-                    use: ['style-loader', 'css-loader', 'sass-loader'],
+                    use: [
+                        'style-loader',
+                        'css-loader',
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sassOptions: {
+                                    includePaths: [helpers.root('src', 'styles', 'global')],
+                                },
+                            },
+                        }
+                    ],
                     include: [helpers.root('src', 'styles')]
                 }
             ]
@@ -52,10 +69,18 @@ module.exports = function () {
 
         plugins: [
             new CheckerPlugin(),
+
             new TsConfigPathsPlugin(),
+
             new HtmlWebpackPlugin({
                 template: './src/index.html'
-            })
+            }),
+
+            new CopyPlugin({
+                patterns: [
+                    {from: 'src/assets', to: 'assets'},
+                ],
+            }),
         ],
 
         performance: {

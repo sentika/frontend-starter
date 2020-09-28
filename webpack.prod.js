@@ -24,7 +24,18 @@ module.exports = function () {
                  */
                 {
                     test: /\.scss$/,
-                    use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                    use: [
+                        MiniCssExtractPlugin.loader,
+                        'css-loader',
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sassOptions: {
+                                    includePaths: [helpers.root('src', 'styles', 'global')],
+                                },
+                            },
+                        }
+                    ],
                     include: [helpers.root('src', 'styles')]
                 }
             ]
