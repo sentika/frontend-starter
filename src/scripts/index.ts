@@ -1,5 +1,5 @@
 import '../styles/style.scss';
+import { DateUtils } from './app/utils/date/date';
 
-import { app } from './app';
-
-app();
+const date = DateUtils.now();
+console.info(date);

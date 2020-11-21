@@ -11,7 +11,7 @@ module.exports = function () {
 
         output: {
             path: helpers.root('dist'),
-            publicPath: '/',
+            publicPath: './',
             filename: `scripts/[name].[chunkhash].bundle.js`,
             sourceMapFilename: '[file].map',
             chunkFilename: `scripts/[name].[chunkhash].chunk.js`
@@ -27,6 +27,18 @@ module.exports = function () {
                     use: [
                         MiniCssExtractPlugin.loader,
                         'css-loader',
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                postcssOptions: {
+                                    plugins: [
+                                        [
+                                            'autoprefixer',
+                                        ],
+                                    ],
+                                },
+                            },
+                        },
                         {
                             loader: 'sass-loader',
                             options: {

@@ -54,6 +54,18 @@ module.exports = function () {
                         'style-loader',
                         'css-loader',
                         {
+                            loader: 'postcss-loader',
+                            options: {
+                                postcssOptions: {
+                                    plugins: [
+                                        [
+                                            'autoprefixer',
+                                        ],
+                                    ],
+                                },
+                            },
+                        },
+                        {
                             loader: 'sass-loader',
                             options: {
                                 sassOptions: {
@@ -88,13 +100,7 @@ module.exports = function () {
         },
 
         node: {
-            global: true,
-            crypto: 'empty',
-            process: false,
-            module: false,
-            clearImmediate: false,
-            setImmediate: false,
-            fs: 'empty'
+            global: true
         }
     }
 };
