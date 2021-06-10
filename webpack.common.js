@@ -98,9 +98,5 @@ module.exports = function () {
         performance: {
             hints: false
         },
-
-        node: {
-            global: true
-        }
     }
 };
